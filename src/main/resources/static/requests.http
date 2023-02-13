@@ -1,0 +1,15 @@
+
+###
+POST http://localhost:8081/api/v1/movies
+Content-Type: application/json
+
+{
+  "title": "Joker",
+  "publishYear": 2017
+}
+
+###
+
+###
+GET http://localhost:8081/api/v1/movies
+Accept: application/json
