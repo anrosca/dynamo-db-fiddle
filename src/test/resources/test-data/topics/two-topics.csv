@@ -1,0 +1,3 @@
+partitionKey,sortKey,title,author,createdAt
+Category#501735c3-5da7-4684-82d3-37af5d5dc44f,Topic#101735c3-1da7-4684-11d3-17af5d5dc11f,Java 19 released,Mike,2023-03-28T14:15:16
+Category#501735c3-5da7-4684-82d3-37af5d5dc44f,Topic#301735c3-3da7-4684-33d3-37af5d5d313f,AWS stuff,John,2023-03-28T14:15:16

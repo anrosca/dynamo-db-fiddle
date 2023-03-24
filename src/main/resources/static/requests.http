@@ -1,15 +1,168 @@
+###
+GET http://localhost:8081/api/v1/categories
+
+<> 2023-03-23T234900.200.json
+<> 2023-03-23T234329.200.json
+<> 2023-03-23T233958.200.json
+<> 2023-03-23T190054.200.json
+<> 2023-03-23T164942.200.json
 
 ###
-POST http://localhost:8081/api/v1/movies
+POST http://localhost:8081/api/v1/categories
 Content-Type: application/json
 
 {
-  "title": "Joker",
-  "publishYear": 2017
+  "name": "Software development"
 }
 
 ###
+POST http://localhost:8081/api/v1/categories
+Content-Type: application/json
+
+{
+  "name": "Anime"
+}
+
+<> 2023-03-23T234858.200.json
+<> 2023-03-23T234831.200.json
+<> 2023-03-23T233953.200.json
 
 ###
-GET http://localhost:8081/api/v1/movies
-Accept: application/json
+POST http://localhost:8081/api/v1/categories/6a44b9a2-1e31-450a-b8be-f821f1308811/topics
+Content-Type: application/json
+
+{
+  "name": "Java 19 released",
+  "author": "Mike"
+}
+
+<> 2023-03-23T234905.200.json
+<> 2023-03-23T234404.200.json
+<> 2023-03-23T234315.200.json
+<> 2023-03-23T234015.200.json
+
+###
+GET http://localhost:8081/api/v1/categories/6a44b9a2-1e31-450a-b8be-f821f1308811/topics
+Content-Type: application/json
+
+###
+GET http://localhost:8081/api/v1/categories/6a44b9a2-1e31-450a-b8be-f821f1308811/topics/e634cbfb-1c2f-4541-bc3f-561c117d69a5
+Content-Type: application/json
+
+
+<> 2023-03-24T084034.500.json
+<> 2023-03-24T084028.200.json
+<> 2023-03-24T084018.200.json
+<> 2023-03-24T083953.200.json
+<> 2023-03-23T234921.200.json
+<> 2023-03-23T234408.200.json
+<> 2023-03-23T234318.200.json
+<> 2023-03-23T234309.200.json
+<> 2023-03-23T234027.200.json
+<> 2023-03-23T190208.500.json
+<> 2023-03-23T190152.200.json
+<> 2023-03-23T164939-1.200.json
+<> 2023-03-23T164939.200.json
+<> 2023-03-23T164927.200.json
+<> 2023-03-23T164902.200.json
+
+###
+GET http://localhost:8081/api/v1/categories/b04969c-86a9-49b0-a7fd-e4419045cd9c
+###
+GET http://localhost:8081/api/v1/categories
+
+<> 2023-03-23T234900.200.json
+<> 2023-03-23T234329.200.json
+<> 2023-03-23T233958.200.json
+<> 2023-03-23T190054.200.json
+<> 2023-03-23T164942.200.json
+
+###
+POST http://localhost:8081/api/v1/categories
+Content-Type: application/json
+
+{
+  "name": "Software development"
+}
+
+###
+POST http://localhost:8081/api/v1/categories
+Content-Type: application/json
+
+{
+  "name": "Anime"
+}
+
+<> 2023-03-23T234858.200.json
+<> 2023-03-23T234831.200.json
+<> 2023-03-23T233953.200.json
+
+###
+POST http://localhost:8081/api/v1/categories/b62b34e-0784-46f6-aeac-f443cb5bbb97/topics
+Content-Type: application/json
+
+{
+  "name": "Java 19 released",
+  "author": "Mike"
+}
+
+<> 2023-03-23T234905.200.json
+<> 2023-03-23T234404.200.json
+<> 2023-03-23T234315.200.json
+<> 2023-03-23T234015.200.json
+
+###
+GET http://localhost:8081/api/v1/categories/a6a944e6-3d8e-4f4a-8f7c-a2634d322608/topics
+Content-Type: application/json
+
+###
+GET http://localhost:8081/api/v1/categories/a6a944e6-3d8e-4f4a-8f7c-a2634d322608/topics/dfcf99a0-1332-4039-930d-5dd511d59838
+Content-Type: application/json
+
+###
+DELETE http://localhost:8081/api/v1/categories/a6a944e6-3d8e-4f4a-8f7c-a2634d322608/topics/dfcf99a0-1332-4039-930d-5dd511d59838
+Content-Type: application/json
+
+###
+GET http://localhost:8081/api/v1/categories/6a44b9a2-1e31-450a-b8be-f821f1308811/topics/e634cbfb-1c2f-4541-bc3f-561c117d69a5/comments
+Content-Type: application/json
+
+###
+GET http://localhost:8081/api/v1/categories/b62b34e-0784-46f6-aeac-f443cb5bbb97/topics/501735c3-5da7-4684-82d3-37af5d5dc44f/comments/5f945a9f-6ebf-48a5-80c1-957a1d9a878f
+Content-Type: application/json
+
+###
+DELETE http://localhost:8081/api/v1/categories/b62b34e-0784-46f6-aeac-f443cb5bbb97/topics/501735c3-5da7-4684-82d3-37af5d5dc44f/comments/5f945a9f-6ebf-48a5-80c1-957a1d9a878f
+Content-Type: application/json
+
+###
+POST http://localhost:8081/api/v1/categories/6a44b9a2-1e31-450a-b8be-f821f1308811/topics/e634cbfb-1c2f-4541-bc3f-561c117d69a5/comments
+Content-Type: application/json
+
+{
+  "author": "Mike",
+  "text": "Yaya"
+}
+
+###
+DELETE http://localhost:8081/api/v1/categories/b62b34e-0784-46f6-aeac-f443cb5bbb97/topics/7fda56ab-5afe-4926-a256-abd3c6644c1c
+Content-Type: application/json
+
+<> 2023-03-24T084034.500.json
+<> 2023-03-24T084028.200.json
+<> 2023-03-24T084018.200.json
+<> 2023-03-24T083953.200.json
+<> 2023-03-23T234921.200.json
+<> 2023-03-23T234408.200.json
+<> 2023-03-23T234318.200.json
+<> 2023-03-23T234309.200.json
+<> 2023-03-23T234027.200.json
+<> 2023-03-23T190208.500.json
+<> 2023-03-23T190152.200.json
+<> 2023-03-23T164939-1.200.json
+<> 2023-03-23T164939.200.json
+<> 2023-03-23T164927.200.json
+<> 2023-03-23T164902.200.json
+
+###
+GET http://localhost:8081/api/v1/categories/b04969c-86a9-49b0-a7fd-e4419045cd9c

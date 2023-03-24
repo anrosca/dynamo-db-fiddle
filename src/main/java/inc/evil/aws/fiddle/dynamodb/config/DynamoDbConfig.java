@@ -2,8 +2,10 @@ package inc.evil.aws.fiddle.dynamodb.config;
 
 import java.net.URI;
 
+import inc.evil.aws.fiddle.category.domain.Category;
+import inc.evil.aws.fiddle.comment.domain.Comment;
 import inc.evil.aws.fiddle.dynamodb.config.properties.AwsProperties;
-import inc.evil.aws.fiddle.dynamodb.domain.Movie;
+import inc.evil.aws.fiddle.topic.domain.Topic;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,7 +43,17 @@ public class DynamoDbConfig {
     }
 
     @Bean
-    public DynamoDbTable<Movie> movieTable(DynamoDbEnhancedClient dynamoDbEnhancedClient, AwsProperties properties) {
-        return dynamoDbEnhancedClient.table(properties.dynamoDbTableName(), TableSchema.fromBean(Movie.class));
+    public DynamoDbTable<Category> categoryTable(DynamoDbEnhancedClient dynamoDbEnhancedClient, AwsProperties properties) {
+        return dynamoDbEnhancedClient.table(properties.dynamoDbTableName(), TableSchema.fromBean(Category.class));
+    }
+
+    @Bean
+    public DynamoDbTable<Topic> topicTable(DynamoDbEnhancedClient dynamoDbEnhancedClient, AwsProperties properties) {
+        return dynamoDbEnhancedClient.table(properties.dynamoDbTableName(), TableSchema.fromBean(Topic.class));
+    }
+
+    @Bean
+    public DynamoDbTable<Comment> commentTable(DynamoDbEnhancedClient dynamoDbEnhancedClient, AwsProperties properties) {
+        return dynamoDbEnhancedClient.table(properties.dynamoDbTableName(), TableSchema.fromBean(Comment.class));
     }
 }
