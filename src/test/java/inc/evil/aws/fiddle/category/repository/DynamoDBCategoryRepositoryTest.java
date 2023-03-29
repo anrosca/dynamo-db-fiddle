@@ -7,6 +7,7 @@ import inc.evil.aws.fiddle.category.domain.Category;
 import inc.evil.aws.fiddle.common.AbstractDatabaseTest;
 import inc.evil.aws.fiddle.common.DynamoCsv;
 import inc.evil.aws.fiddle.common.DynamoDbTest;
+import inc.evil.aws.fiddle.topic.domain.Topic;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,6 +21,7 @@ public class DynamoDBCategoryRepositoryTest extends AbstractDatabaseTest {
 
     @Test
     @DynamoCsv(value = "/test-data/categories/two-categories.csv", entityType = Category.class)
+    @DynamoCsv(value = "/test-data/topics/two-topics.csv", entityType = Topic.class)
     public void shouldBeAbleToFindAllCategories() {
         List<Category> expectedCategories = List.of(
             Category.builder()

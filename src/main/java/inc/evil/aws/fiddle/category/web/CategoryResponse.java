@@ -2,9 +2,13 @@ package inc.evil.aws.fiddle.category.web;
 
 import inc.evil.aws.fiddle.category.domain.Category;
 import lombok.Builder;
+import lombok.Data;
 
 @Builder
-public record CategoryResponse(String id, String name) {
+@Data
+public class CategoryResponse {
+    private String id;
+    private String name;
 
     public static CategoryResponse from(Category category) {
         return CategoryResponse.builder()

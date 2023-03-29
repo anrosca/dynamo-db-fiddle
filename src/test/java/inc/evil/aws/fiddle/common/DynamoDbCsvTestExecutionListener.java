@@ -2,6 +2,7 @@ package inc.evil.aws.fiddle.common;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.fasterxml.jackson.databind.MappingIterator;
@@ -12,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
+import org.springframework.test.context.util.TestContextResourceUtils;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
@@ -51,10 +53,11 @@ public class DynamoDbCsvTestExecutionListener implements TestExecutionListener {
     }
 
     private static void readAndPutItems(ApplicationContext applicationContext, String resourcePath, Class<?> entityType, DynamoDbTable<Object> table) {
-        try (MappingIterator<Object> mappingIterator = parseCvs(entityType, applicationContext.getResource(resourcePath))) {
+        List<Resource> resources = TestContextResourceUtils.convertToResourceList(applicationContext, "classpath:" + resourcePath);
+        try (MappingIterator<Object> mappingIterator = parseCvs(entityType, resources.get(0))) {
             mappingIterator.readAll().forEach(table::putItem);
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 
