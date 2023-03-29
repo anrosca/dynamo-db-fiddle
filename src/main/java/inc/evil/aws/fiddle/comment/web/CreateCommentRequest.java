@@ -4,11 +4,11 @@ import java.time.Instant;
 
 import inc.evil.aws.fiddle.comment.domain.Comment;
 
-public record CreateCommentRequest(String author, String text) {
+public record CreateCommentRequest(String userId, String text) {
 
     public Comment toComment(String topicId) {
         return Comment.builder()
-                      .author(author)
+                      .userId(userId)
                       .text(text)
                       .createdAt(Instant.now().toString())
                       .topicId(topicId)

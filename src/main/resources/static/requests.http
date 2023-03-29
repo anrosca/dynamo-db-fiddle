@@ -28,13 +28,17 @@ Content-Type: application/json
 <> 2023-03-23T233953.200.json
 
 ###
-POST http://localhost:8081/api/v1/categories/6a44b9a2-1e31-450a-b8be-f821f1308811/topics
+POST http://localhost:8081/api/v1/categories/4f06f62-1461-4395-8e08-485bb6c0d497/topics
 Content-Type: application/json
 
 {
   "name": "Java 19 released",
-  "author": "Mike"
+  "userId": "2e0c8f82-88d3-20cf-2112-a0678be9c201"
 }
+
+###
+GET http://localhost:8081/api/v1/users/2e0c8f82-88d3-20cf-2112-a0678be9c201/topics
+Content-Type: application/json
 
 <> 2023-03-23T234905.200.json
 <> 2023-03-23T234404.200.json
@@ -42,11 +46,11 @@ Content-Type: application/json
 <> 2023-03-23T234015.200.json
 
 ###
-GET http://localhost:8081/api/v1/categories/6a44b9a2-1e31-450a-b8be-f821f1308811/topics
+GET http://localhost:8081/api/v1/categories/b095b05d-954e-423f-962e-3e9289a6312b/topics
 Content-Type: application/json
 
 ###
-GET http://localhost:8081/api/v1/categories/6a44b9a2-1e31-450a-b8be-f821f1308811/topics/e634cbfb-1c2f-4541-bc3f-561c117d69a5
+GET http://localhost:8081/api/v1/categories/a539faf6-1429-4222-a4f3-df2117799524/topics/b9306a41-7444-4e13-85de-822667ca3889
 Content-Type: application/json
 
 
@@ -98,7 +102,7 @@ Content-Type: application/json
 <> 2023-03-23T233953.200.json
 
 ###
-POST http://localhost:8081/api/v1/categories/b62b34e-0784-46f6-aeac-f443cb5bbb97/topics
+POST http://localhost:8081/api/v1/categories/c2a8a0ed-c675-46d5-9208-51057b918360/topics
 Content-Type: application/json
 
 {
@@ -112,7 +116,7 @@ Content-Type: application/json
 <> 2023-03-23T234015.200.json
 
 ###
-GET http://localhost:8081/api/v1/categories/a6a944e6-3d8e-4f4a-8f7c-a2634d322608/topics
+GET http://localhost:8081/api/v1/categories/89248e1f-e08b-465e-bd94-2647facfeaef/topics
 Content-Type: application/json
 
 ###
@@ -124,7 +128,7 @@ DELETE http://localhost:8081/api/v1/categories/a6a944e6-3d8e-4f4a-8f7c-a2634d322
 Content-Type: application/json
 
 ###
-GET http://localhost:8081/api/v1/categories/6a44b9a2-1e31-450a-b8be-f821f1308811/topics/e634cbfb-1c2f-4541-bc3f-561c117d69a5/comments
+GET http://localhost:8081/api/v1/categories/495e06e2-73f8-4acf-912f-5d99dfb91bd2/topics/7019abd0-850b-4031-b0bd-aa3c6adaf44c/comments
 Content-Type: application/json
 
 ###
@@ -136,16 +140,16 @@ DELETE http://localhost:8081/api/v1/categories/b62b34e-0784-46f6-aeac-f443cb5bbb
 Content-Type: application/json
 
 ###
-POST http://localhost:8081/api/v1/categories/6a44b9a2-1e31-450a-b8be-f821f1308811/topics/e634cbfb-1c2f-4541-bc3f-561c117d69a5/comments
+POST http://localhost:8081/api/v1/categories/4f06f62-1461-4395-8e08-485bb6c0d497/topics/d9aa91fd-b583-414f-9c7e-724fdc3bd8e4/comments
 Content-Type: application/json
 
 {
-  "author": "Mike",
-  "text": "Yaya"
+  "userId": "2e0c8f82-88d3-20cf-2112-a0678be9c201",
+  "text": "Finally! I was waiting a long time for it"
 }
 
 ###
-DELETE http://localhost:8081/api/v1/categories/b62b34e-0784-46f6-aeac-f443cb5bbb97/topics/7fda56ab-5afe-4926-a256-abd3c6644c1c
+DELETE http://localhost:8081/api/v1/categories/495e06e2-73f8-4acf-912f-5d99dfb91bd2/topics/7019abd0-850b-4031-b0bd-aa3c6adaf44c
 Content-Type: application/json
 
 <> 2023-03-24T084034.500.json

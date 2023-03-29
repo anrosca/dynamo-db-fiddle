@@ -8,7 +8,7 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbIgnor
 @DynamoDbBean
 @EqualsAndHashCode(callSuper = true)
 public class Category extends DynamoDbBase {
-    public static final String CATEGORY_PK = "Category";
+    public static final String CATEGORY_PK_PREFIX = "Category#";
     public static final String CATEGORY_SK_PREFIX = "Category#";
 
     private String name;
@@ -29,7 +29,7 @@ public class Category extends DynamoDbBase {
 
     @DynamoDbIgnore
     public String getId() {
-        return getSortKey().substring(CATEGORY_SK_PREFIX.length());
+        return getSortKey().substring(CATEGORY_PK_PREFIX.length() + 1);
     }
 
     public String getName() {
@@ -46,7 +46,7 @@ public class Category extends DynamoDbBase {
 
     public static class CategoryKeyBuilder {
         public static String makePartitionKey(String id) {
-            return CATEGORY_PK;
+            return CATEGORY_PK_PREFIX + id;
         }
 
         public static String makeSortKey(String id) {

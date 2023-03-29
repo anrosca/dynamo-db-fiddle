@@ -51,15 +51,6 @@ public class DynamoDbCommentRepository implements CommentRepository {
     }
 
     @Override
-    public Optional<Comment> deleteByTopicIdAndCommentId(String topicId, String commentId) {
-        Key key = Key.builder()
-                     .partitionValue(Comment.CommentKeyBuilder.makePartitionKey(topicId))
-                     .sortValue(Comment.CommentKeyBuilder.makeSortKey(commentId))
-                     .build();
-        return Optional.ofNullable(commentTable.deleteItem(key));
-    }
-
-    @Override
     public Optional<Comment> findById(String topicId, String commentId) {
         Key key = Key.builder()
                      .partitionValue(Comment.CommentKeyBuilder.makePartitionKey(topicId))

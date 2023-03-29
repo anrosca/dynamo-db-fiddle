@@ -9,7 +9,7 @@ public record CommentResponse(String author, String createdAt, String text, Stri
     public static CommentResponse from(Comment comment) {
         return CommentResponse.builder()
                               .commentId(comment.getId())
-                              .author(comment.getAuthor())
+                              .author(comment.getUserId())
                               .text(comment.getText())
                               .createdAt(comment.getCreatedAt())
                               .topicId(comment.getTopicId())

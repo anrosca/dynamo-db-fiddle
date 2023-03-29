@@ -23,14 +23,14 @@ public class DynamoDBCategoryRepositoryTest extends AbstractDatabaseTest {
     public void shouldBeAbleToFindAllCategories() {
         List<Category> expectedCategories = List.of(
             Category.builder()
-                    .name("Software development")
-                    .partitionKey("Category")
-                    .sortKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
+                    .name("Anime")
+                    .partitionKey("Category#601735c3-6da7-4684-62d3-47af5d5dc44e")
+                    .sortKey("Category#601735c3-6da7-4684-62d3-47af5d5dc44e")
                     .build(),
             Category.builder()
-                    .name("Anime")
-                    .partitionKey("Category")
-                    .sortKey("Category#601735c3-6da7-4684-62d3-47af5d5dc44e")
+                    .name("Software development")
+                    .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
+                    .sortKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                     .build()
         );
 
@@ -60,7 +60,7 @@ public class DynamoDBCategoryRepositoryTest extends AbstractDatabaseTest {
     public void shouldBeAbleToFindCategoriesById() {
         Category expectedCategory = Category.builder()
                                             .name("Software development")
-                                            .partitionKey("Category")
+                                            .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                                             .sortKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                                             .build();
 
@@ -74,7 +74,7 @@ public class DynamoDBCategoryRepositoryTest extends AbstractDatabaseTest {
     public void shouldBeAbleToDeleteCategoriesById() {
         Category expectedCategory = Category.builder()
                                             .name("Software development")
-                                            .partitionKey("Category")
+                                            .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                                             .sortKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                                             .build();
 

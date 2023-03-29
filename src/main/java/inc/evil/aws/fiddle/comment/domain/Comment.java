@@ -1,6 +1,7 @@
 package inc.evil.aws.fiddle.comment.domain;
 
 import inc.evil.aws.fiddle.common.DynamoDbBase;
+import inc.evil.aws.fiddle.user.domain.User;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbIgnore;
 
@@ -9,7 +10,7 @@ public class Comment extends DynamoDbBase {
     public static final String COMMENT_PK_PREFIX = "Topic#";
     public static final String COMMENT_SK_PREFIX = "Comment#";
 
-    private String author;
+    private String userId;
     private String createdAt;
     private String text;
 
@@ -17,10 +18,13 @@ public class Comment extends DynamoDbBase {
     }
 
     private Comment(CommentBuilder builder) {
-        this.author = builder.author;
+        this.userId = builder.userId;
         this.createdAt = builder.createdAt;
         this.text = builder.text;
         this.partitionKey = CommentKeyBuilder.makePartitionKey(builder.topicId);
+        this.sortKey = builder.id != null ? CommentKeyBuilder.makeSortKey(builder.id) : null;
+        this.gsi1PartitionKey = User.USER_PK_PREFIX + userId;
+        this.gsi1SortKey = builder.id != null ? CommentKeyBuilder.makeSortKey(builder.id) : null;
     }
 
     @DynamoDbIgnore
@@ -30,10 +34,11 @@ public class Comment extends DynamoDbBase {
 
     public void setId(String id) {
         this.sortKey = CommentKeyBuilder.makeSortKey(id);
+        this.gsi1SortKey = CommentKeyBuilder.makeSortKey(id);
     }
 
-    public String getAuthor() {
-        return this.author;
+    public String getUserId() {
+        return this.userId;
     }
 
     public String getCreatedAt() {
@@ -44,8 +49,8 @@ public class Comment extends DynamoDbBase {
         return this.text;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public void setCreatedAt(String createdAt) {
@@ -66,13 +71,14 @@ public class Comment extends DynamoDbBase {
 
     public static class CommentBuilder {
 
-        private String author;
+        private String userId;
         private String createdAt;
         private String text;
         private String topicId;
+        private String id;
 
-        public CommentBuilder author(String author) {
-            this.author = author;
+        public CommentBuilder userId(String userId) {
+            this.userId = userId;
             return this;
         }
 
@@ -93,6 +99,11 @@ public class Comment extends DynamoDbBase {
 
         public Comment build() {
             return new Comment(this);
+        }
+
+        public CommentBuilder id(String id) {
+            this.id = id;
+            return this;
         }
     }
 

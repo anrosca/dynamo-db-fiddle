@@ -4,12 +4,12 @@ import java.time.Instant;
 
 import inc.evil.aws.fiddle.topic.domain.Topic;
 
-public record CreateTopicRequest(String name, String author) {
+public record CreateTopicRequest(String name, String userId) {
     public Topic toTopic(String categoryId) {
         return Topic.builder()
                     .title(name)
                     .createdAt(Instant.now().toString())
-                    .author(author)
+                    .userId(userId)
                     .categoryId(categoryId)
                     .build();
     }

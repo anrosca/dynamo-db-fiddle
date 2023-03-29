@@ -13,4 +13,6 @@ public interface TopicRepository {
     Optional<Topic> findByCategoryIdAndTopicId(String categoryId, String topicId);
 
     Optional<Topic> deleteByCategoryIdAndTopicId(String categoryId, String topicId);
+
+    List<Topic> findTopicsForUser(String id);
 }

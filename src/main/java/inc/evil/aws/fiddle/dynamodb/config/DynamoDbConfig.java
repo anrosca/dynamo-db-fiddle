@@ -6,6 +6,7 @@ import inc.evil.aws.fiddle.category.domain.Category;
 import inc.evil.aws.fiddle.comment.domain.Comment;
 import inc.evil.aws.fiddle.dynamodb.config.properties.AwsProperties;
 import inc.evil.aws.fiddle.topic.domain.Topic;
+import inc.evil.aws.fiddle.user.domain.User;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -55,5 +56,10 @@ public class DynamoDbConfig {
     @Bean
     public DynamoDbTable<Comment> commentTable(DynamoDbEnhancedClient dynamoDbEnhancedClient, AwsProperties properties) {
         return dynamoDbEnhancedClient.table(properties.dynamoDbTableName(), TableSchema.fromBean(Comment.class));
+    }
+
+    @Bean
+    public DynamoDbTable<User> userTable(DynamoDbEnhancedClient dynamoDbEnhancedClient, AwsProperties properties) {
+        return dynamoDbEnhancedClient.table(properties.dynamoDbTableName(), TableSchema.fromBean(User.class));
     }
 }

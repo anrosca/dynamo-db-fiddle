@@ -1,16 +1,19 @@
 package inc.evil.aws.fiddle.topic.domain;
 
 import inc.evil.aws.fiddle.common.DynamoDbBase;
+import lombok.EqualsAndHashCode;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbIgnore;
 
 @DynamoDbBean
+@EqualsAndHashCode(callSuper = true)
 public class Topic extends DynamoDbBase {
     public static final String TOPIC_PK_PREFIX = "Category#";
     public static final String TOPIC_SK_PREFIX = "Topic#";
+    public static final String USER_GSI1_PK_PREFIX = "User#";
 
     private String title;
-    private String author;
+    private String userId;
     private String createdAt;
 
     public Topic() {
@@ -18,9 +21,12 @@ public class Topic extends DynamoDbBase {
 
     public Topic(TopicBuilder builder) {
         this.title = builder.title;
-        this.author = builder.author;
+        this.userId = builder.userId;
         this.createdAt = builder.createdAt;
-        this.partitionKey = TopicKeyBuilder.makePartitionKey(builder.categoryId);
+        this.partitionKey = builder.partitionKey;
+        this.sortKey = builder.sortKey;
+        this.gsi1SortKey = builder.gsi1SortKey;
+        this.gsi1PartitionKey = builder.gsi1PartitionKey;
     }
 
     @DynamoDbIgnore
@@ -30,6 +36,7 @@ public class Topic extends DynamoDbBase {
 
     public void setId(String id) {
         this.sortKey = TopicKeyBuilder.makeSortKey(id);
+        this.gsi1SortKey = TopicKeyBuilder.makeSortKey(id);
     }
 
     public String getCategoryId() {
@@ -40,8 +47,8 @@ public class Topic extends DynamoDbBase {
         return this.title;
     }
 
-    public String getAuthor() {
-        return this.author;
+    public String getUserId() {
+        return this.userId;
     }
 
     public String getCreatedAt() {
@@ -52,8 +59,8 @@ public class Topic extends DynamoDbBase {
         this.title = title;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public void setCreatedAt(String createdAt) {
@@ -67,19 +74,21 @@ public class Topic extends DynamoDbBase {
     public static class TopicBuilder {
 
         private String title;
-        private String author;
+        private String userId;
         private String createdAt;
-        private String categoryId;
         private String partitionKey;
         private String sortKey;
+        private String gsi1PartitionKey;
+        private String gsi1SortKey;
 
         public TopicBuilder title(String title) {
             this.title = title;
             return this;
         }
 
-        public TopicBuilder author(String author) {
-            this.author = author;
+        public TopicBuilder userId(String userId) {
+            this.userId = userId;
+            this.gsi1PartitionKey = USER_GSI1_PK_PREFIX + userId;
             return this;
         }
 
@@ -88,8 +97,13 @@ public class Topic extends DynamoDbBase {
             return this;
         }
 
-        public TopicBuilder categoryId(String categoryId) {
-            this.categoryId = categoryId;
+        public TopicBuilder gsi1PartitionKey(String gsi1PartitionKey) {
+            this.gsi1PartitionKey = gsi1PartitionKey;
+            return this;
+        }
+
+        public TopicBuilder gsi1SortKey(String gsi1SortKey) {
+            this.gsi1SortKey = gsi1SortKey;
             return this;
         }
 
@@ -100,6 +114,12 @@ public class Topic extends DynamoDbBase {
 
         public TopicBuilder sortKey(String sortKey) {
             this.sortKey = sortKey;
+            this.gsi1SortKey = sortKey;
+            return this;
+        }
+
+        public TopicBuilder categoryId(String categoryId) {
+            this.partitionKey = TopicKeyBuilder.makePartitionKey(categoryId);
             return this;
         }
 

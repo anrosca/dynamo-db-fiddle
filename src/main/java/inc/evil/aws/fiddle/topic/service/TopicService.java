@@ -36,4 +36,8 @@ public class TopicService {
         return topicRepository.deleteByCategoryIdAndTopicId(categoryId, topicId)
                               .orElseThrow(() -> new TopicNotFoundException("No topic in category: " + categoryId + " and topicId: " + topicId + " was found"));
     }
+
+    public List<Topic> findTopicsForUser(String id) {
+        return topicRepository.findTopicsForUser(id);
+    }
 }
