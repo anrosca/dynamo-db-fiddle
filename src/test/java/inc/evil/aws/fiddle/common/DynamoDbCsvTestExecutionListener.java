@@ -41,8 +41,10 @@ public class DynamoDbCsvTestExecutionListener implements TestExecutionListener {
     }
 
     private static void dropAndCreateTable(DynamoDbTable<Object> table) {
-        table.deleteTable();
-        table.createTable();
+        table.scan()
+             .stream()
+             .flatMap(page -> page.items().stream())
+             .forEach(table::deleteItem);
     }
 
     @SuppressWarnings("unchecked")

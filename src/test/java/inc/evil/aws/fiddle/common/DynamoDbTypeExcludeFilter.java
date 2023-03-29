@@ -25,18 +25,18 @@ public class DynamoDbTypeExcludeFilter extends AnnotationCustomizableTypeExclude
         return this.annotation != null;
     }
 
-    @Override
-    protected boolean defaultInclude(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) throws IOException {
-        if (super.defaultInclude(metadataReader, metadataReaderFactory)) {
-            return true;
-        }
-        for (Class<?> repository : this.annotation.repositories()) {
-            if (isTypeOrAnnotated(metadataReader, metadataReaderFactory, repository)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    @Override
+//    protected boolean defaultInclude(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) throws IOException {
+//        if (super.defaultInclude(metadataReader, metadataReaderFactory)) {
+//            return true;
+//        }
+//        for (Class<?> repository : this.annotation.repositories()) {
+//            if (isTypeOrAnnotated(metadataReader, metadataReaderFactory, repository)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     protected ComponentScan.Filter[] getFilters(FilterType type) {
@@ -50,7 +50,8 @@ public class DynamoDbTypeExcludeFilter extends AnnotationCustomizableTypeExclude
 
     @Override
     protected Set<Class<?>> getDefaultIncludes() {
-        return ObjectUtils.isEmpty(this.annotation.repositories()) ? DEFAULT_INCLUDES : Set.of();
+//        return ObjectUtils.isEmpty(this.annotation.repositories()) ? DEFAULT_INCLUDES : Set.of();
+        return DEFAULT_INCLUDES;
     }
 
     @Override
