@@ -7,6 +7,7 @@ import inc.evil.aws.fiddle.comment.domain.Comment;
 import inc.evil.aws.fiddle.common.AbstractDatabaseTest;
 import inc.evil.aws.fiddle.common.DynamoCsv;
 import inc.evil.aws.fiddle.common.DynamoDbTest;
+import inc.evil.aws.fiddle.topic.domain.Topic;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,6 +39,7 @@ public class DynamoDbCommentRepositoryTest extends AbstractDatabaseTest {
 
     @Test
     @DynamoCsv(value = "/test-data/comment/two-comments.csv", entityType = Comment.class)
+    @DynamoCsv(value = "/test-data/topics/two-topics.csv", entityType = Topic.class)
     public void shouldBeAbleToFindCommentsByTopicId() {
         String topicId = "101735c3-1da7-4684-11d3-17af5d5dc11f";
         List<Comment> expectedComments = List.of(
