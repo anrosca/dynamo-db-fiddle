@@ -10,7 +10,7 @@ public record CreateCommentRequest(String userId, String text) {
         return Comment.builder()
                       .userId(userId)
                       .text(text)
-                      .createdAt(Instant.now().toString())
+                      .createdAt(Instant.now())
                       .topicId(topicId)
                       .build();
     }

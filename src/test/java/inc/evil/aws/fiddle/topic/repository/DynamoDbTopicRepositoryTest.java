@@ -1,5 +1,6 @@
 package inc.evil.aws.fiddle.topic.repository;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,18 +25,18 @@ public class DynamoDbTopicRepositoryTest extends AbstractDatabaseTest {
         String categoryId = "501735c3-5da7-4684-82d3-37af5d5dc44f";
         List<Topic> expectedTopics = List.of(
             Topic.builder()
-                 .title("AWS stuff")
-                 .userId("44af5d5d313f")
-                 .createdAt("2023-03-28T14:15:16")
-                 .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
-                 .sortKey("Topic#301735c3-3da7-4684-33d3-37af5d5d313f")
-                 .build(),
-            Topic.builder()
                  .title("Java 19 released")
                  .userId("37af5d5d313f")
-                 .createdAt("2023-03-28T14:15:16")
+                 .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                  .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                  .sortKey("Topic#101735c3-1da7-4684-11d3-17af5d5dc11f")
+                 .build(),
+            Topic.builder()
+                 .title("AWS stuff")
+                 .userId("44af5d5d313f")
+                 .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
+                 .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
+                 .sortKey("Topic#301735c3-3da7-4684-33d3-37af5d5d313f")
                  .build()
         );
 
@@ -52,7 +53,7 @@ public class DynamoDbTopicRepositoryTest extends AbstractDatabaseTest {
         Topic expectedTopic = Topic.builder()
                  .title("Java 19 released")
                  .userId("37af5d5d313f")
-                 .createdAt("2023-03-28T14:15:16")
+                 .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                  .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                  .sortKey("Topic#101735c3-1da7-4684-11d3-17af5d5dc11f")
                  .build();
@@ -71,7 +72,7 @@ public class DynamoDbTopicRepositoryTest extends AbstractDatabaseTest {
             Topic.builder()
                  .title("AWS stuff")
                  .userId("44af5d5d313f")
-                 .createdAt("2023-03-28T14:15:16")
+                 .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                  .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                  .sortKey("Topic#301735c3-3da7-4684-33d3-37af5d5d313f")
                  .build()
@@ -79,7 +80,7 @@ public class DynamoDbTopicRepositoryTest extends AbstractDatabaseTest {
         Topic expectedDeletedTopic = Topic.builder()
                                    .title("Java 19 released")
                                    .userId("37af5d5d313f")
-                                   .createdAt("2023-03-28T14:15:16")
+                                   .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                                    .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                                    .sortKey("Topic#101735c3-1da7-4684-11d3-17af5d5dc11f")
                                    .build();
@@ -98,7 +99,7 @@ public class DynamoDbTopicRepositoryTest extends AbstractDatabaseTest {
             Topic.builder()
                  .title("AWS stuff")
                  .userId("44af5d5d313f")
-                 .createdAt("2023-03-28T14:15:16")
+                 .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                  .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                  .sortKey("Topic#301735c3-3da7-4684-33d3-37af5d5d313f")
                  .build()

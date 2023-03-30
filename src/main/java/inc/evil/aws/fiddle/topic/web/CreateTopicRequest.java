@@ -8,7 +8,7 @@ public record CreateTopicRequest(String name, String userId) {
     public Topic toTopic(String categoryId) {
         return Topic.builder()
                     .title(name)
-                    .createdAt(Instant.now().toString())
+                    .createdAt(Instant.now())
                     .userId(userId)
                     .categoryId(categoryId)
                     .build();

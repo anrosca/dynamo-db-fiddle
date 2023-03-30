@@ -1,5 +1,7 @@
 package inc.evil.aws.fiddle.topic.domain;
 
+import java.time.Instant;
+
 import inc.evil.aws.fiddle.common.DynamoDbBase;
 import lombok.EqualsAndHashCode;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
@@ -14,7 +16,7 @@ public class Topic extends DynamoDbBase {
 
     private String title;
     private String userId;
-    private String createdAt;
+    private Instant createdAt;
 
     public Topic() {
     }
@@ -51,7 +53,7 @@ public class Topic extends DynamoDbBase {
         return this.userId;
     }
 
-    public String getCreatedAt() {
+    public Instant getCreatedAt() {
         return this.createdAt;
     }
 
@@ -63,7 +65,7 @@ public class Topic extends DynamoDbBase {
         this.userId = userId;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -75,7 +77,7 @@ public class Topic extends DynamoDbBase {
 
         private String title;
         private String userId;
-        private String createdAt;
+        private Instant createdAt;
         private String partitionKey;
         private String sortKey;
         private String gsi1PartitionKey;
@@ -92,7 +94,7 @@ public class Topic extends DynamoDbBase {
             return this;
         }
 
-        public TopicBuilder createdAt(String createdAt) {
+        public TopicBuilder createdAt(Instant createdAt) {
             this.createdAt = createdAt;
             return this;
         }

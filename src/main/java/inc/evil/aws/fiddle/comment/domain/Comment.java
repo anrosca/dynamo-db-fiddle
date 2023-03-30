@@ -1,5 +1,7 @@
 package inc.evil.aws.fiddle.comment.domain;
 
+import java.time.Instant;
+
 import inc.evil.aws.fiddle.common.DynamoDbBase;
 import inc.evil.aws.fiddle.user.domain.User;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
@@ -11,7 +13,7 @@ public class Comment extends DynamoDbBase {
     public static final String COMMENT_SK_PREFIX = "Comment#";
 
     private String userId;
-    private String createdAt;
+    private Instant createdAt;
     private String text;
 
     public Comment() {
@@ -41,7 +43,7 @@ public class Comment extends DynamoDbBase {
         return this.userId;
     }
 
-    public String getCreatedAt() {
+    public Instant getCreatedAt() {
         return this.createdAt;
     }
 
@@ -53,7 +55,7 @@ public class Comment extends DynamoDbBase {
         this.userId = userId;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -72,7 +74,7 @@ public class Comment extends DynamoDbBase {
     public static class CommentBuilder {
 
         private String userId;
-        private String createdAt;
+        private Instant createdAt;
         private String text;
         private String topicId;
         private String id;
@@ -82,7 +84,7 @@ public class Comment extends DynamoDbBase {
             return this;
         }
 
-        public CommentBuilder createdAt(String createdAt) {
+        public CommentBuilder createdAt(Instant createdAt) {
             this.createdAt = createdAt;
             return this;
         }

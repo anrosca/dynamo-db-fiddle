@@ -13,10 +13,10 @@ import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.Key;
 import software.amazon.awssdk.enhanced.dynamodb.model.Page;
 import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
-import software.amazon.awssdk.enhanced.dynamodb.model.QueryEnhancedRequest;
 
 @Repository
 public class DynamoDbTopicRepository implements TopicRepository {
+
     private final DynamoDbTable<Topic> topicTable;
     private final DynamoDbIndex<Topic> topicGsi1Index;
 
@@ -34,13 +34,7 @@ public class DynamoDbTopicRepository implements TopicRepository {
                .build()
         );
 
-        QueryEnhancedRequest reverseOrderQuery = QueryEnhancedRequest
-            .builder()
-            .queryConditional(skBeginsWithQuery)
-            .scanIndexForward(Boolean.FALSE)
-            .build();
-
-        return topicTable.query(reverseOrderQuery)
+        return topicTable.query(skBeginsWithQuery)
                          .items()
                          .stream()
                          .toList();

@@ -11,7 +11,7 @@ public record CommentResponse(String author, String createdAt, String text, Stri
                               .commentId(comment.getId())
                               .author(comment.getUserId())
                               .text(comment.getText())
-                              .createdAt(comment.getCreatedAt())
+                              .createdAt(comment.getCreatedAt().toString())
                               .topicId(comment.getTopicId())
                               .build();
     }

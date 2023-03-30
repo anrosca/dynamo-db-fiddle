@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import inc.evil.aws.fiddle.dynamodb.config.properties.AwsProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
@@ -26,6 +27,7 @@ public class DynamoDbCsvTestExecutionListener implements TestExecutionListener {
         ApplicationContext applicationContext = testContext.getApplicationContext();
         DynamoCsv[] annotations = testContext.getTestMethod().getAnnotationsByType(DynamoCsv.class);
         boolean shouldCleanupTable = shouldCleanupTable(annotations);
+        cleanupFlag.set(false);
         for (DynamoCsv dynamoCsv : annotations) {
             executeFor(applicationContext, dynamoCsv, shouldCleanupTable);
         }
@@ -80,6 +82,7 @@ public class DynamoDbCsvTestExecutionListener implements TestExecutionListener {
 
     private static MappingIterator<Object> parseCvs(Class<?> entityType, Resource resource) throws IOException {
         CsvMapper csvMapper = new CsvMapper();
+        csvMapper.registerModule(new JavaTimeModule());
         CsvSchema schema = CsvSchema.emptySchema().withHeader();
         return csvMapper.readerFor(entityType)
                         .with(schema)

@@ -1,5 +1,6 @@
 package inc.evil.aws.fiddle.comment.repository;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class DynamoDbCommentRepositoryTest extends AbstractDatabaseTest {
                                          .id(commentId)
                                          .userId("101735c3-1da7-4684-11d3-17af5d5dc11f")
                                          .text("Hello, world")
-                                         .createdAt("2023-03-28T14:15:16")
+                                         .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                                          .topicId(topicId)
                                          .build();
 
@@ -47,14 +48,14 @@ public class DynamoDbCommentRepositoryTest extends AbstractDatabaseTest {
                    .id("601735c3-6da7-4684-82d3-67af5d5dc44f")
                    .userId("201735c3-1da7-4684-11d3-17af5d5dc11f")
                    .text("Yay")
-                   .createdAt("2023-03-29T14:15:16")
+                   .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                    .topicId(topicId)
                    .build(),
             Comment.builder()
                    .id("501735c3-5da7-4684-82d3-37af5d5dc44f")
                    .userId("101735c3-1da7-4684-11d3-17af5d5dc11f")
                    .text("Hello, world")
-                   .createdAt("2023-03-28T14:15:16")
+                   .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                    .topicId(topicId)
                    .build()
         );
@@ -74,7 +75,7 @@ public class DynamoDbCommentRepositoryTest extends AbstractDatabaseTest {
                    .id("601735c3-6da7-4684-82d3-67af5d5dc44f")
                    .userId("201735c3-1da7-4684-11d3-17af5d5dc11f")
                    .text("Yay")
-                   .createdAt("2023-03-29T14:15:16")
+                   .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                    .topicId(topicId)
                    .build()
         );
@@ -82,7 +83,7 @@ public class DynamoDbCommentRepositoryTest extends AbstractDatabaseTest {
                                                 .id("501735c3-5da7-4684-82d3-37af5d5dc44f")
                                                 .userId("101735c3-1da7-4684-11d3-17af5d5dc11f")
                                                 .text("Hello, world")
-                                                .createdAt("2023-03-28T14:15:16")
+                                                .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                                                 .topicId(topicId)
                                                 .build();
 

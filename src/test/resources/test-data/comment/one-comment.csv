@@ -1,2 +1,2 @@
 partitionKey,sortKey,createdAt,text,gsi1PartitionKey,gsi1SortKey
-Topic#101735c3-1da7-4684-11d3-17af5d5dc11f,Comment#501735c3-5da7-4684-82d3-37af5d5dc44f,2023-03-28T14:15:16,"Hello, world",User#101735c3-1da7-4684-11d3-17af5d5dc11f,Comment#501735c3-5da7-4684-82d3-37af5d5dc44f
+Topic#101735c3-1da7-4684-11d3-17af5d5dc11f,Comment#501735c3-5da7-4684-82d3-37af5d5dc44f,2023-03-29T20:03:27.757321136Z,"Hello, world",User#101735c3-1da7-4684-11d3-17af5d5dc11f,Comment#501735c3-5da7-4684-82d3-37af5d5dc44f
