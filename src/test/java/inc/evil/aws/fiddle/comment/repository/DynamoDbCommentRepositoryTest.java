@@ -11,6 +11,7 @@ import inc.evil.aws.fiddle.common.DynamoDbTest;
 import inc.evil.aws.fiddle.topic.domain.Topic;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,6 +20,9 @@ public class DynamoDbCommentRepositoryTest extends AbstractDatabaseTest {
 
     @Autowired
     private DynamoDbCommentRepository commentRepository;
+
+    @Autowired
+    ApplicationContext applicationContext;
 
     @Test
     @DynamoCsv(value = "/test-data/comment/one-comment.csv", entityType = Comment.class)

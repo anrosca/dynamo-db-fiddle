@@ -1,34 +1,21 @@
-###
-GET http://localhost:8081/api/v1/categories
-
-<> 2023-03-23T234900.200.json
-<> 2023-03-23T234329.200.json
-<> 2023-03-23T233958.200.json
-<> 2023-03-23T190054.200.json
-<> 2023-03-23T164942.200.json
-
-###
-POST http://localhost:8081/api/v1/categories
+### Create a category
+POST {{host}}/api/v1/categories
 Content-Type: application/json
 
 {
   "name": "Software development"
 }
 
-###
-POST http://localhost:8081/api/v1/categories
-Content-Type: application/json
+### Get all categories
+GET {{host}}/api/v1/categories
 
-{
-  "name": "Anime"
-}
+> {%
+client.global.set("sofwareCategoryId", response.body[0].id)
+ %}
 
-<> 2023-03-23T234858.200.json
-<> 2023-03-23T234831.200.json
-<> 2023-03-23T233953.200.json
 
-###
-POST http://localhost:8081/api/v1/categories/4f06f62-1461-4395-8e08-485bb6c0d497/topics
+### Create topic for category
+POST {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics
 Content-Type: application/json
 
 {
@@ -36,137 +23,59 @@ Content-Type: application/json
   "userId": "2e0c8f82-88d3-20cf-2112-a0678be9c201"
 }
 
-###
-GET http://localhost:8081/api/v1/users/2e0c8f82-88d3-20cf-2112-a0678be9c201/topics
+> {%
+ client.test("Response status should be 200", function () {
+     client.assert(response.status === 200, "Expected 200 but got: " + response.status)
+ })
+ %}
+
+### Get topics of a category
+GET {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics
 Content-Type: application/json
 
-<> 2023-03-23T234905.200.json
-<> 2023-03-23T234404.200.json
-<> 2023-03-23T234315.200.json
-<> 2023-03-23T234015.200.json
+> {%
+ client.global.set("topicId", response.body[0].id)
+ %}
 
-###
-GET http://localhost:8081/api/v1/categories/b095b05d-954e-423f-962e-3e9289a6312b/topics
+### Get a particular topic
+GET {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}
 Content-Type: application/json
 
-###
-GET http://localhost:8081/api/v1/categories/a539faf6-1429-4222-a4f3-df2117799524/topics/b9306a41-7444-4e13-85de-822667ca3889
-Content-Type: application/json
-
-
-<> 2023-03-24T084034.500.json
-<> 2023-03-24T084028.200.json
-<> 2023-03-24T084018.200.json
-<> 2023-03-24T083953.200.json
-<> 2023-03-23T234921.200.json
-<> 2023-03-23T234408.200.json
-<> 2023-03-23T234318.200.json
-<> 2023-03-23T234309.200.json
-<> 2023-03-23T234027.200.json
-<> 2023-03-23T190208.500.json
-<> 2023-03-23T190152.200.json
-<> 2023-03-23T164939-1.200.json
-<> 2023-03-23T164939.200.json
-<> 2023-03-23T164927.200.json
-<> 2023-03-23T164902.200.json
-
-###
-GET http://localhost:8081/api/v1/categories/b04969c-86a9-49b0-a7fd-e4419045cd9c
-###
-GET http://localhost:8081/api/v1/categories
-
-<> 2023-03-23T234900.200.json
-<> 2023-03-23T234329.200.json
-<> 2023-03-23T233958.200.json
-<> 2023-03-23T190054.200.json
-<> 2023-03-23T164942.200.json
-
-###
+### Create random category
 POST http://localhost:8081/api/v1/categories
 Content-Type: application/json
 
 {
-  "name": "Software development"
+  "name": "{{$random.alphabetic(20)}}"
 }
 
-###
-POST http://localhost:8081/api/v1/categories
+### Delete a topic
+DELETE {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}
 Content-Type: application/json
 
-{
-  "name": "Anime"
-}
-
-<> 2023-03-23T234858.200.json
-<> 2023-03-23T234831.200.json
-<> 2023-03-23T233953.200.json
-
-###
-POST http://localhost:8081/api/v1/categories/c2a8a0ed-c675-46d5-9208-51057b918360/topics
+### Get comments for a topic
+GET {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}/comments
 Content-Type: application/json
 
-{
-  "name": "Java 19 released",
-  "author": "Mike"
-}
-
-<> 2023-03-23T234905.200.json
-<> 2023-03-23T234404.200.json
-<> 2023-03-23T234315.200.json
-<> 2023-03-23T234015.200.json
-
-###
-GET http://localhost:8081/api/v1/categories/89248e1f-e08b-465e-bd94-2647facfeaef/topics
-Content-Type: application/json
-
-###
-GET http://localhost:8081/api/v1/categories/a6a944e6-3d8e-4f4a-8f7c-a2634d322608/topics/dfcf99a0-1332-4039-930d-5dd511d59838
-Content-Type: application/json
-
-###
-DELETE http://localhost:8081/api/v1/categories/a6a944e6-3d8e-4f4a-8f7c-a2634d322608/topics/dfcf99a0-1332-4039-930d-5dd511d59838
-Content-Type: application/json
-
-###
-GET http://localhost:8081/api/v1/categories/495e06e2-73f8-4acf-912f-5d99dfb91bd2/topics/7019abd0-850b-4031-b0bd-aa3c6adaf44c/comments
-Content-Type: application/json
-
-###
-GET http://localhost:8081/api/v1/categories/b62b34e-0784-46f6-aeac-f443cb5bbb97/topics/501735c3-5da7-4684-82d3-37af5d5dc44f/comments/5f945a9f-6ebf-48a5-80c1-957a1d9a878f
-Content-Type: application/json
-
-###
-DELETE http://localhost:8081/api/v1/categories/b62b34e-0784-46f6-aeac-f443cb5bbb97/topics/501735c3-5da7-4684-82d3-37af5d5dc44f/comments/5f945a9f-6ebf-48a5-80c1-957a1d9a878f
-Content-Type: application/json
-
-###
-POST http://localhost:8081/api/v1/categories/4f06f62-1461-4395-8e08-485bb6c0d497/topics/d9aa91fd-b583-414f-9c7e-724fdc3bd8e4/comments
+### Create a comment for a topic
+POST {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}/comments
 Content-Type: application/json
 
 {
   "userId": "2e0c8f82-88d3-20cf-2112-a0678be9c201",
-  "text": "Finally! I was waiting a long time for it"
+  "text": "Yay"
 }
 
-###
-DELETE http://localhost:8081/api/v1/categories/495e06e2-73f8-4acf-912f-5d99dfb91bd2/topics/7019abd0-850b-4031-b0bd-aa3c6adaf44c
+> {%
+ client.global.set("commentId", response.body.commentId)
+ %}
+
+### Get comment by id
+GET {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}/comments/{{commentId}}
 Content-Type: application/json
 
-<> 2023-03-24T084034.500.json
-<> 2023-03-24T084028.200.json
-<> 2023-03-24T084018.200.json
-<> 2023-03-24T083953.200.json
-<> 2023-03-23T234921.200.json
-<> 2023-03-23T234408.200.json
-<> 2023-03-23T234318.200.json
-<> 2023-03-23T234309.200.json
-<> 2023-03-23T234027.200.json
-<> 2023-03-23T190208.500.json
-<> 2023-03-23T190152.200.json
-<> 2023-03-23T164939-1.200.json
-<> 2023-03-23T164939.200.json
-<> 2023-03-23T164927.200.json
-<> 2023-03-23T164902.200.json
+### Delete a comment
+DELETE {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}/comments/{{commentId}}
+Content-Type: application/json
 
 ###
-GET http://localhost:8081/api/v1/categories/b04969c-86a9-49b0-a7fd-e4419045cd9c
