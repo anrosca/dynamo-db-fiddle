@@ -33,4 +33,8 @@ public class CommentFacade {
     public CommentResponse deleteById(String topicId, String commentId) {
         return CommentResponse.from(commentService.deleteById(topicId, commentId));
     }
+
+    public CommentResponse likeComment(String topicId, String commentId) {
+        return CommentResponse.from(commentService.likeComment(topicId, commentId));
+    }
 }

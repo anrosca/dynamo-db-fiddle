@@ -38,4 +38,10 @@ public class CommentService {
                                 .orElseThrow(
                                     () -> new CommentNotFoundException("No comment for topic: " + topicId + " and commentId: " + commentId + "was found"));
     }
+
+    public Comment likeComment(String topicId, String commentId) {
+        return commentRepository.likeComment(topicId, commentId)
+                .orElseThrow(
+                        () -> new CommentNotFoundException("No comment for topic: " + topicId + " and commentId: " + commentId + "was found"));
+    }
 }

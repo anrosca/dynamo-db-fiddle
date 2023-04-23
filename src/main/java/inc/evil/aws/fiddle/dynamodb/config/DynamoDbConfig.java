@@ -1,7 +1,5 @@
 package inc.evil.aws.fiddle.dynamodb.config;
 
-import java.net.URI;
-
 import inc.evil.aws.fiddle.category.domain.Category;
 import inc.evil.aws.fiddle.comment.domain.Comment;
 import inc.evil.aws.fiddle.dynamodb.config.properties.AwsProperties;
@@ -16,6 +14,8 @@ import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+
+import java.net.URI;
 
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(AwsProperties.class)

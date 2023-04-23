@@ -15,4 +15,6 @@ public interface CommentRepository {
     Optional<Comment> findById(String topicId, String commentId);
 
     Optional<Comment> deleteById(String topicId, String commentId);
+
+    Optional<Comment> likeComment(String topicId, String commentId);
 }

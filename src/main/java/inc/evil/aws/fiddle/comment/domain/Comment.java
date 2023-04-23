@@ -15,6 +15,7 @@ public class Comment extends DynamoDbBase {
     private String userId;
     private Instant createdAt;
     private String text;
+    private long likeCount;
 
     public Comment() {
     }
@@ -23,6 +24,7 @@ public class Comment extends DynamoDbBase {
         this.userId = builder.userId;
         this.createdAt = builder.createdAt;
         this.text = builder.text;
+        this.likeCount = builder.likeCount;
         this.partitionKey = CommentKeyBuilder.makePartitionKey(builder.topicId);
         this.sortKey = builder.id != null ? CommentKeyBuilder.makeSortKey(builder.id) : null;
         this.gsi1PartitionKey = User.USER_PK_PREFIX + userId;
@@ -63,6 +65,14 @@ public class Comment extends DynamoDbBase {
         this.text = text;
     }
 
+    public long getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(long likeCount) {
+        this.likeCount = likeCount;
+    }
+
     public static CommentBuilder builder() {
         return new CommentBuilder();
     }
@@ -78,6 +88,7 @@ public class Comment extends DynamoDbBase {
         private String text;
         private String topicId;
         private String id;
+        private long likeCount;
 
         public CommentBuilder userId(String userId) {
             this.userId = userId;
@@ -91,6 +102,11 @@ public class Comment extends DynamoDbBase {
 
         public CommentBuilder text(String text) {
             this.text = text;
+            return this;
+        }
+
+        public CommentBuilder likeCount(long likeCount) {
+            this.likeCount = likeCount;
             return this;
         }
 

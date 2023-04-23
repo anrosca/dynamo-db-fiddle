@@ -8,10 +8,11 @@ public record CreateCommentRequest(String userId, String text) {
 
     public Comment toComment(String topicId) {
         return Comment.builder()
-                      .userId(userId)
-                      .text(text)
-                      .createdAt(Instant.now())
-                      .topicId(topicId)
-                      .build();
+                .userId(userId)
+                .text(text)
+                .createdAt(Instant.now())
+                .topicId(topicId)
+                .likeCount(0L)
+                .build();
     }
 }

@@ -30,6 +30,11 @@ public class CommentController {
         return commentFacade.findById(topicId, commentId);
     }
 
+    @PostMapping("{commentId}/likes")
+    public CommentResponse likeComment(@PathVariable String categoryId, @PathVariable String topicId, @PathVariable String commentId) {
+        return commentFacade.likeComment(topicId, commentId);
+    }
+
     @DeleteMapping("{commentId}")
     public CommentResponse deleteById(@PathVariable String categoryId, @PathVariable String topicId, @PathVariable String commentId) {
         return commentFacade.deleteById(topicId, commentId);

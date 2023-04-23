@@ -6,12 +6,12 @@ Content-Type: application/json
   "name": "Software development"
 }
 
+> {%
+    client.global.set("sofwareCategoryId", response.body.id)
+%}
+
 ### Get all categories
 GET {{host}}/api/v1/categories
-
-> {%
-client.global.set("sofwareCategoryId", response.body[0].id)
- %}
 
 
 ### Create topic for category
@@ -72,6 +72,10 @@ Content-Type: application/json
 
 ### Get comment by id
 GET {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}/comments/{{commentId}}
+Content-Type: application/json
+
+### Like comment
+POST {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}/comments/{{commentId}}/likes
 Content-Type: application/json
 
 ### Delete a comment
