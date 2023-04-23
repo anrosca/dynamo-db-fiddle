@@ -4,6 +4,7 @@ import java.util.List;
 
 import inc.evil.aws.fiddle.common.IdGenerator;
 import inc.evil.aws.fiddle.topic.domain.Topic;
+import inc.evil.aws.fiddle.topic.domain.TopicTag;
 import inc.evil.aws.fiddle.topic.repository.TopicRepository;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +40,10 @@ public class TopicService {
 
     public List<Topic> findTopicsForUser(String id) {
         return topicRepository.findTopicsForUser(id);
+    }
+
+    public Topic addTags(String categoryId, String topicId, List<TopicTag> tagsToAdd) {
+        return topicRepository.addTags(categoryId, topicId, tagsToAdd)
+                .orElseThrow(() -> new TopicNotFoundException("No topic in category: " + categoryId + " and topicId: " + topicId + " was found"));
     }
 }

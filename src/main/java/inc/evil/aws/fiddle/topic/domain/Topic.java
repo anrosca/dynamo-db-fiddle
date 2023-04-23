@@ -1,6 +1,7 @@
 package inc.evil.aws.fiddle.topic.domain;
 
 import java.time.Instant;
+import java.util.List;
 
 import inc.evil.aws.fiddle.common.DynamoDbBase;
 import lombok.EqualsAndHashCode;
@@ -17,6 +18,7 @@ public class Topic extends DynamoDbBase {
     private String title;
     private String userId;
     private Instant createdAt;
+    private List<TopicTag> tags;
 
     public Topic() {
     }
@@ -25,6 +27,7 @@ public class Topic extends DynamoDbBase {
         this.title = builder.title;
         this.userId = builder.userId;
         this.createdAt = builder.createdAt;
+        this.tags = builder.tags;
         this.partitionKey = builder.partitionKey;
         this.sortKey = builder.sortKey;
         this.gsi1SortKey = builder.gsi1SortKey;
@@ -57,6 +60,14 @@ public class Topic extends DynamoDbBase {
         return this.createdAt;
     }
 
+    public List<TopicTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<TopicTag> tags) {
+        this.tags = tags;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -82,6 +93,7 @@ public class Topic extends DynamoDbBase {
         private String sortKey;
         private String gsi1PartitionKey;
         private String gsi1SortKey;
+        private List<TopicTag> tags;
 
         public TopicBuilder title(String title) {
             this.title = title;
@@ -96,6 +108,11 @@ public class Topic extends DynamoDbBase {
 
         public TopicBuilder createdAt(Instant createdAt) {
             this.createdAt = createdAt;
+            return this;
+        }
+
+        public TopicBuilder tags(List<TopicTag> tags) {
+            this.tags = tags;
             return this;
         }
 

@@ -2,6 +2,7 @@ package inc.evil.aws.fiddle.topic.web;
 
 import java.util.List;
 
+import inc.evil.aws.fiddle.topic.domain.TopicTag;
 import inc.evil.aws.fiddle.topic.facade.TopicFacade;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,11 @@ public class TopicController {
     @GetMapping("{topicId}")
     public TopicResponse findById(@PathVariable String categoryId, @PathVariable String topicId) {
         return topicFacade.findById(categoryId, topicId);
+    }
+
+    @PostMapping("{topicId}/tags")
+    public TopicResponse addTags(@PathVariable String categoryId, @PathVariable String topicId, @RequestBody List<TopicTag> tagsToAdd) {
+        return topicFacade.addTags(categoryId, topicId, tagsToAdd);
     }
 
     @DeleteMapping("{topicId}")

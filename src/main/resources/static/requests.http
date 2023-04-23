@@ -20,7 +20,8 @@ Content-Type: application/json
 
 {
   "name": "Java 19 released",
-  "userId": "2e0c8f82-88d3-20cf-2112-a0678be9c201"
+  "userId": "2e0c8f82-88d3-20cf-2112-a0678be9c201",
+  "tags": ["NSFW"]
 }
 
 > {%
@@ -40,6 +41,14 @@ Content-Type: application/json
 ### Get a particular topic
 GET {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}
 Content-Type: application/json
+
+###
+POST {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/b0574534-c156-4cd7-8cca-18e531d85aba/tags
+Content-Type: application/json
+
+[
+  "NSFW", "TRIGGER_WARNING"
+]
 
 ### Create random category
 POST http://localhost:8081/api/v1/categories

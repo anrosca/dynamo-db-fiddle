@@ -2,6 +2,7 @@ package inc.evil.aws.fiddle.topic.facade;
 
 import java.util.List;
 
+import inc.evil.aws.fiddle.topic.domain.TopicTag;
 import inc.evil.aws.fiddle.topic.service.TopicService;
 import inc.evil.aws.fiddle.topic.web.CreateTopicRequest;
 import inc.evil.aws.fiddle.topic.web.TopicResponse;
@@ -40,5 +41,9 @@ public class TopicFacade {
                            .stream()
                            .map(TopicResponse::from)
                            .toList();
+    }
+
+    public TopicResponse addTags(String categoryId, String topicId, List<TopicTag> tagsToAdd) {
+        return TopicResponse.from(topicService.addTags(categoryId, topicId, tagsToAdd));
     }
 }

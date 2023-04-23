@@ -1,11 +1,10 @@
 package inc.evil.aws.fiddle.topic.repository;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import inc.evil.aws.fiddle.dynamodb.config.IndexNames;
 import inc.evil.aws.fiddle.topic.domain.Topic;
+import inc.evil.aws.fiddle.topic.domain.TopicTag;
 import inc.evil.aws.fiddle.user.domain.User;
 import org.springframework.stereotype.Repository;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbIndex;
@@ -76,5 +75,21 @@ public class DynamoDbTopicRepository implements TopicRepository {
                              .map(Page::items)
                              .flatMap(Collection::stream)
                              .toList();
+    }
+
+    @Override
+    public Optional<Topic> addTags(String categoryId, String topicId, List<TopicTag> tagsToAdd) {
+        return findByCategoryIdAndTopicId(categoryId, topicId)
+                .map(topic -> {
+                    topic.setTags(mergeTopicTags(tagsToAdd, topic));
+                    return topic;
+                })
+                .map(topicTable::updateItem);
+    }
+
+    private static List<TopicTag> mergeTopicTags(List<TopicTag> tagsToAdd, Topic topic) {
+        Set<TopicTag> mergedTags = new HashSet<>(tagsToAdd);
+        mergedTags.addAll(topic.getTags() != null ? topic.getTags() : List.of());
+        return mergedTags.stream().toList();
     }
 }
