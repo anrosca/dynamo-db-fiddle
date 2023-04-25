@@ -36,8 +36,8 @@ public class TopicFacade {
         return TopicResponse.from(topicService.deleteById(categoryId, topicId));
     }
 
-    public List<TopicResponse> findTopicsForUser(String userId) {
-        return topicService.findTopicsForUser(userId)
+    public List<TopicResponse> findTopicsForUser(String userName) {
+        return topicService.findTopicsForUser(userName)
                            .stream()
                            .map(TopicResponse::from)
                            .toList();

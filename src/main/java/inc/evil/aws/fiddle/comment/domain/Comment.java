@@ -12,7 +12,7 @@ public class Comment extends DynamoDbBase {
     public static final String COMMENT_PK_PREFIX = "Topic#";
     public static final String COMMENT_SK_PREFIX = "Comment#";
 
-    private String userId;
+    private String userName;
     private Instant createdAt;
     private String text;
     private long likeCount;
@@ -21,13 +21,13 @@ public class Comment extends DynamoDbBase {
     }
 
     private Comment(CommentBuilder builder) {
-        this.userId = builder.userId;
+        this.userName = builder.userName;
         this.createdAt = builder.createdAt;
         this.text = builder.text;
         this.likeCount = builder.likeCount;
         this.partitionKey = CommentKeyBuilder.makePartitionKey(builder.topicId);
         this.sortKey = builder.id != null ? CommentKeyBuilder.makeSortKey(builder.id) : null;
-        this.gsi1PartitionKey = User.USER_PK_PREFIX + userId;
+        this.gsi1PartitionKey = User.USER_PK_PREFIX + userName;
         this.gsi1SortKey = builder.id != null ? CommentKeyBuilder.makeSortKey(builder.id) : null;
     }
 
@@ -41,8 +41,8 @@ public class Comment extends DynamoDbBase {
         this.gsi1SortKey = CommentKeyBuilder.makeSortKey(id);
     }
 
-    public String getUserId() {
-        return this.userId;
+    public String getUserName() {
+        return this.userName;
     }
 
     public Instant getCreatedAt() {
@@ -53,8 +53,8 @@ public class Comment extends DynamoDbBase {
         return this.text;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setCreatedAt(Instant createdAt) {
@@ -83,15 +83,15 @@ public class Comment extends DynamoDbBase {
 
     public static class CommentBuilder {
 
-        private String userId;
+        private String userName;
         private Instant createdAt;
         private String text;
         private String topicId;
         private String id;
         private long likeCount;
 
-        public CommentBuilder userId(String userId) {
-            this.userId = userId;
+        public CommentBuilder userName(String userName) {
+            this.userName = userName;
             return this;
         }
 

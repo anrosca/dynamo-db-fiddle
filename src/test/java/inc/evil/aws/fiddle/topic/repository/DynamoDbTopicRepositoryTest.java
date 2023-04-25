@@ -26,14 +26,14 @@ public class DynamoDbTopicRepositoryTest extends AbstractDatabaseTest {
         List<Topic> expectedTopics = List.of(
             Topic.builder()
                  .title("Java 19 released")
-                 .userId("37af5d5d313f")
+                 .userName("37af5d5d313f")
                  .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                  .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                  .sortKey("Topic#101735c3-1da7-4684-11d3-17af5d5dc11f")
                  .build(),
             Topic.builder()
                  .title("AWS stuff")
-                 .userId("44af5d5d313f")
+                 .userName("44af5d5d313f")
                  .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                  .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                  .sortKey("Topic#301735c3-3da7-4684-33d3-37af5d5d313f")
@@ -52,7 +52,7 @@ public class DynamoDbTopicRepositoryTest extends AbstractDatabaseTest {
         String topicId = "101735c3-1da7-4684-11d3-17af5d5dc11f";
         Topic expectedTopic = Topic.builder()
                  .title("Java 19 released")
-                 .userId("37af5d5d313f")
+                 .userName("37af5d5d313f")
                  .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                  .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                  .sortKey("Topic#101735c3-1da7-4684-11d3-17af5d5dc11f")
@@ -71,7 +71,7 @@ public class DynamoDbTopicRepositoryTest extends AbstractDatabaseTest {
         List<Topic> expectedRemainingTopics = List.of(
             Topic.builder()
                  .title("AWS stuff")
-                 .userId("44af5d5d313f")
+                 .userName("44af5d5d313f")
                  .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                  .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                  .sortKey("Topic#301735c3-3da7-4684-33d3-37af5d5d313f")
@@ -79,7 +79,7 @@ public class DynamoDbTopicRepositoryTest extends AbstractDatabaseTest {
         );
         Topic expectedDeletedTopic = Topic.builder()
                                    .title("Java 19 released")
-                                   .userId("37af5d5d313f")
+                                   .userName("37af5d5d313f")
                                    .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                                    .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                                    .sortKey("Topic#101735c3-1da7-4684-11d3-17af5d5dc11f")
@@ -94,18 +94,18 @@ public class DynamoDbTopicRepositoryTest extends AbstractDatabaseTest {
     @Test
     @DynamoCsv(value = "/test-data/topics/two-topics.csv", entityType = Topic.class)
     public void shouldBeAbleToFindAllTopicsForGivenUser() {
-        String userId = "44af5d5d313f";
+        String userName = "44af5d5d313f";
         List<Topic> expectedTopics = List.of(
             Topic.builder()
                  .title("AWS stuff")
-                 .userId("44af5d5d313f")
+                 .userName("44af5d5d313f")
                  .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                  .partitionKey("Category#501735c3-5da7-4684-82d3-37af5d5dc44f")
                  .sortKey("Topic#301735c3-3da7-4684-33d3-37af5d5d313f")
                  .build()
         );
 
-        List<Topic> actualTopics = topicRepository.findTopicsForUser(userId);
+        List<Topic> actualTopics = topicRepository.findTopicsForUser(userName);
 
         assertThat(actualTopics).isEqualTo(expectedTopics);
     }

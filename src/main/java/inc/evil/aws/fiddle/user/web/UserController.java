@@ -19,8 +19,8 @@ public class UserController {
         this.topicFacade = topicFacade;
     }
 
-    @GetMapping("{userId}/topics")
-    public List<TopicResponse> findTopicsForUser(@PathVariable String userId) {
-        return topicFacade.findTopicsForUser(userId);
+    @GetMapping("{userName}/topics")
+    public List<TopicResponse> findTopicsForUser(@PathVariable String userName) {
+        return topicFacade.findTopicsForUser(userName);
     }
 }

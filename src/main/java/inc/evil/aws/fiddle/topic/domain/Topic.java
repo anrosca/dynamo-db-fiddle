@@ -16,7 +16,7 @@ public class Topic extends DynamoDbBase {
     public static final String USER_GSI1_PK_PREFIX = "User#";
 
     private String title;
-    private String userId;
+    private String userName;
     private Instant createdAt;
     private List<TopicTag> tags;
 
@@ -25,7 +25,7 @@ public class Topic extends DynamoDbBase {
 
     public Topic(TopicBuilder builder) {
         this.title = builder.title;
-        this.userId = builder.userId;
+        this.userName = builder.userName;
         this.createdAt = builder.createdAt;
         this.tags = builder.tags;
         this.partitionKey = builder.partitionKey;
@@ -52,8 +52,8 @@ public class Topic extends DynamoDbBase {
         return this.title;
     }
 
-    public String getUserId() {
-        return this.userId;
+    public String getUserName() {
+        return this.userName;
     }
 
     public Instant getCreatedAt() {
@@ -72,8 +72,8 @@ public class Topic extends DynamoDbBase {
         this.title = title;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setCreatedAt(Instant createdAt) {
@@ -87,7 +87,7 @@ public class Topic extends DynamoDbBase {
     public static class TopicBuilder {
 
         private String title;
-        private String userId;
+        private String userName;
         private Instant createdAt;
         private String partitionKey;
         private String sortKey;
@@ -100,9 +100,9 @@ public class Topic extends DynamoDbBase {
             return this;
         }
 
-        public TopicBuilder userId(String userId) {
-            this.userId = userId;
-            this.gsi1PartitionKey = USER_GSI1_PK_PREFIX + userId;
+        public TopicBuilder userName(String userName) {
+            this.userName = userName;
+            this.gsi1PartitionKey = USER_GSI1_PK_PREFIX + userName;
             return this;
         }
 

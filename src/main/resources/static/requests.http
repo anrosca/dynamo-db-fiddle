@@ -13,14 +13,17 @@ Content-Type: application/json
 ### Get all categories
 GET {{host}}/api/v1/categories
 
+### Get category by id
+GET {{host}}/api/v1/categories/{{sofwareCategoryId}}
+Content-Type: application/json
 
 ### Create topic for category
 POST {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics
 Content-Type: application/json
 
 {
-  "name": "Java 19 released",
-  "userId": "2e0c8f82-88d3-20cf-2112-a0678be9c201",
+  "name": "DynamoDB is fun",
+  "userName": "john",
   "tags": ["NSFW"]
 }
 
@@ -42,8 +45,8 @@ Content-Type: application/json
 GET {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}
 Content-Type: application/json
 
-###
-POST {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/b0574534-c156-4cd7-8cca-18e531d85aba/tags
+### Add tags for a topic
+POST {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}/tags
 Content-Type: application/json
 
 [
@@ -71,8 +74,8 @@ POST {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}/comment
 Content-Type: application/json
 
 {
-  "userId": "2e0c8f82-88d3-20cf-2112-a0678be9c201",
-  "text": "Yay"
+  "userName": "john",
+  "text": "Finally"
 }
 
 > {%
@@ -91,4 +94,7 @@ Content-Type: application/json
 DELETE {{host}}/api/v1/categories/{{sofwareCategoryId}}/topics/{{topicId}}/comments/{{commentId}}
 Content-Type: application/json
 
+###
+### Get topics created by user
+GET {{host}}/api/v1/users/john/topics
 ###

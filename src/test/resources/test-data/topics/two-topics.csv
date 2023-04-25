@@ -1,3 +1,3 @@
-partitionKey,sortKey,title,userId,createdAt,gsi1PartitionKey,gsi1SortKey
+partitionKey,sortKey,title,userName,createdAt,gsi1PartitionKey,gsi1SortKey
 Category#501735c3-5da7-4684-82d3-37af5d5dc44f,Topic#101735c3-1da7-4684-11d3-17af5d5dc11f,Java 19 released,37af5d5d313f,2023-03-29T20:03:27.757321136Z,User#37af5d5d313f,Topic#101735c3-1da7-4684-11d3-17af5d5dc11f
 Category#501735c3-5da7-4684-82d3-37af5d5dc44f,Topic#301735c3-3da7-4684-33d3-37af5d5d313f,AWS stuff,44af5d5d313f,2023-03-29T20:03:27.757321136Z,User#44af5d5d313f,Topic#301735c3-3da7-4684-33d3-37af5d5d313f

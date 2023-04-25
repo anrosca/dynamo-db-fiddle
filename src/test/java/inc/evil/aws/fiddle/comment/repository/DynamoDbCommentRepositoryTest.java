@@ -31,7 +31,7 @@ public class DynamoDbCommentRepositoryTest extends AbstractDatabaseTest {
         String commentId = "501735c3-5da7-4684-82d3-37af5d5dc44f";
         Comment expectedComment = Comment.builder()
                                          .id(commentId)
-                                         .userId("101735c3-1da7-4684-11d3-17af5d5dc11f")
+                                         .userName("101735c3-1da7-4684-11d3-17af5d5dc11f")
                                          .text("Hello, world")
                                          .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                                          .topicId(topicId)
@@ -50,14 +50,14 @@ public class DynamoDbCommentRepositoryTest extends AbstractDatabaseTest {
         List<Comment> expectedComments = List.of(
             Comment.builder()
                    .id("601735c3-6da7-4684-82d3-67af5d5dc44f")
-                   .userId("201735c3-1da7-4684-11d3-17af5d5dc11f")
+                   .userName("201735c3-1da7-4684-11d3-17af5d5dc11f")
                    .text("Yay")
                    .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                    .topicId(topicId)
                    .build(),
             Comment.builder()
                    .id("501735c3-5da7-4684-82d3-37af5d5dc44f")
-                   .userId("101735c3-1da7-4684-11d3-17af5d5dc11f")
+                   .userName("101735c3-1da7-4684-11d3-17af5d5dc11f")
                    .text("Hello, world")
                    .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                    .topicId(topicId)
@@ -77,7 +77,7 @@ public class DynamoDbCommentRepositoryTest extends AbstractDatabaseTest {
         List<Comment> expectedRemainingComments = List.of(
             Comment.builder()
                    .id("601735c3-6da7-4684-82d3-67af5d5dc44f")
-                   .userId("201735c3-1da7-4684-11d3-17af5d5dc11f")
+                   .userName("201735c3-1da7-4684-11d3-17af5d5dc11f")
                    .text("Yay")
                    .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                    .topicId(topicId)
@@ -85,7 +85,7 @@ public class DynamoDbCommentRepositoryTest extends AbstractDatabaseTest {
         );
         Comment expectedDeletedComment = Comment.builder()
                                                 .id("501735c3-5da7-4684-82d3-37af5d5dc44f")
-                                                .userId("101735c3-1da7-4684-11d3-17af5d5dc11f")
+                                                .userName("101735c3-1da7-4684-11d3-17af5d5dc11f")
                                                 .text("Hello, world")
                                                 .createdAt(Instant.parse("2023-03-29T20:03:27.757321136Z"))
                                                 .topicId(topicId)
